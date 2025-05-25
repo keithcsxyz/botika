@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>✨ Sweet Boutique ✨</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Nunito:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Animate.css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <style>
+      :root {
+        --primary-pink: #ff6b9d;
+        --soft-pink: #ffb3d1;
+        --light-pink: #ffe0ec;
+        --lavender: #e6ccff;
+        --mint: #ccffdd;
+        --peach: #ffd6cc;
+        --cream: #fff8f0;
+        --gold: #ffd700;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Nunito", sans-serif;
+        background: linear-gradient(
+          135deg,
+          var(--light-pink) 0%,
+          var(--lavender) 50%,
+          var(--mint) 100%
+        );
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* Floating hearts animation */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(180deg);
+        }
+      }
+
+      @keyframes sparkle {
+        0%,
+        100% {
+          opacity: 0;
+          transform: scale(0);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .floating-hearts {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .heart {
+        position: absolute;
+        color: var(--primary-pink);
+        font-size: 20px;
+        animation: float 6s ease-in-out infinite;
+        opacity: 0.3;
+      }
+
+      .sparkle {
+        position: absolute;
+        color: var(--gold);
+        font-size: 12px;
+        animation: sparkle 3s ease-in-out infinite;
+      }
+
+      /* Header Styles */
+      .navbar {
+        background: linear-gradient(
+          45deg,
+          var(--primary-pink),
+          var(--soft-pink)
+        );
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 32px rgba(255, 107, 157, 0.3);
+        border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .navbar-brand {
+        font-family: "Fredoka One", cursive;
+        font-size: 2rem;
+        color: white !important;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .navbar-nav .nav-link {
+        color: white !important;
+        font-weight: 600;
+        margin: 0 10px;
+        padding: 8px 16px !important;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .navbar-nav .nav-link:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(
+            rgba(255, 107, 157, 0.8),
+            rgba(230, 204, 255, 0.8)
+          ),
+          url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hearts" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><text x="10" y="15" font-size="12" fill="%23fff" opacity="0.1">♥</text></pattern></defs><rect width="100" height="100" fill="url(%23hearts)"/></svg>');
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+            circle at 20% 80%,
+            var(--peach) 0%,
+            transparent 50%
+          ),
+          radial-gradient(circle at 80% 20%, var(--mint) 0%, transparent 50%);
+        opacity: 0.5;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero h1 {
+        font-family: "Fredoka One", cursive;
+        font-size: 4rem;
+        color: white;
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+        margin-bottom: 20px;
+      }
+
+      .hero p {
+        font-size: 1.5rem;
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        margin-bottom: 30px;
+      }
+
+      .btn-cute {
+        background: linear-gradient(45deg, var(--primary-pink), var(--gold));
+        border: none;
+        border-radius: 50px;
+        padding: 15px 40px;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: white;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-cute::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .btn-cute:hover::before {
+        left: 100%;
+      }
+
+      .btn-cute:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 12px 35px rgba(255, 107, 157, 0.6);
+      }
+
+      /* Section Styles */
+      .cute-section {
+        padding: 80px 0;
+        position: relative;
+      }
+
+      .section-title {
+        font-family: "Fredoka One", cursive;
+        font-size: 3rem;
+        color: var(--primary-pink);
+        text-align: center;
+        margin-bottom: 50px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Card Styles */
+      .milkshake-card {
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        border-radius: 25px;
+        padding: 30px;
+        margin: 20px 0;
+        box-shadow: 0 15px 35px rgba(255, 107, 157, 0.2);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .milkshake-card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          var(--light-pink) 0%,
+          transparent 70%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .milkshake-card:hover {
+        transform: translateY(-10px) rotateY(5deg);
+        box-shadow: 0 25px 50px rgba(255, 107, 157, 0.4);
+      }
+
+      .milkshake-card:hover::before {
+        opacity: 0.3;
+      }
+
+      .milkshake-icon {
+        font-size: 4rem;
+        color: var(--primary-pink);
+        margin-bottom: 20px;
+        display: block;
+        text-align: center;
+      }
+
+      .milkshake-title {
+        font-family: "Fredoka One", cursive;
+        font-size: 1.5rem;
+        color: var(--primary-pink);
+        margin-bottom: 15px;
+        text-align: center;
+      }
+
+      .milkshake-description {
+        color: #666;
+        text-align: center;
+        line-height: 1.6;
+        position: relative;
+        z-index: 2;
+      }
+
+      .price-tag {
+        background: linear-gradient(45deg, var(--gold), #ffed4a);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 50px;
+        font-weight: 700;
+        display: inline-block;
+        margin-top: 15px;
+        box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+      }
+
+      /* Order Form */
+      .order-form {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 25px;
+        padding: 40px;
+        box-shadow: 0 15px 35px rgba(255, 107, 157, 0.2);
+        margin: 20px 0;
+      }
+
+      .form-control {
+        border: 2px solid var(--light-pink);
+        border-radius: 15px;
+        padding: 12px 20px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .form-control:focus {
+        border-color: var(--primary-pink);
+        box-shadow: 0 0 0 0.2rem rgba(255, 107, 157, 0.25);
+      }
+
+      .form-select {
+        border: 2px solid var(--light-pink);
+        border-radius: 15px;
+        padding: 12px 20px;
+      }
+
+      /* Contact Section */
+      .contact-info {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 25px;
+        padding: 40px;
+        text-align: center;
+        box-shadow: 0 15px 35px rgba(255, 107, 157, 0.2);
+      }
+
+      .contact-icon {
+        font-size: 3rem;
+        color: var(--primary-pink);
+        margin-bottom: 20px;
+      }
+
+      /* Footer */
+      footer {
+        background: linear-gradient(45deg, var(--primary-pink), #8b5cf6);
+        color: white;
+        padding: 40px 0;
+        text-align: center;
+      }
+
+      .social-links a {
+        color: white;
+        font-size: 1.5rem;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+      }
+
+      .social-links a:hover {
+        color: var(--gold);
+        transform: translateY(-3px);
+      }
+
+      /* Animations */
+      .bounce-in {
+        animation: bounceIn 1s ease-out;
+      }
+
+      .fade-in-up {
+        animation: fadeInUp 1s ease-out;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero p {
+          font-size: 1.2rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+      }
+
+      /* Custom checkbox styles */
+      .custom-checkbox {
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
+      }
+
+      .custom-checkbox input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        accent-color: var(--primary-pink);
+      }
+
+      /* Quantity selector */
+      .quantity-selector {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 15px 0;
+      }
+
+      .quantity-btn {
+        background: var(--primary-pink);
+        color: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .quantity-btn:hover {
+        background: var(--soft-pink);
+        transform: scale(1.1);
+      }
+
+      .quantity-display {
+        margin: 0 20px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--primary-pink);
+        min-width: 50px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Floating hearts and sparkles -->
+    <div class="floating-hearts" id="floatingElements"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container">
+        <a
+          class="navbar-brand animate__animated animate__bounceIn"
+          href="#home"
+        >
+          ✨ Sweet Boutique ✨
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#home">🏠 Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">💖 About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#menu">🥤 Menu</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#order">🛍️ Order</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">📞 Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 hero-content">
+            <h1 class="animate__animated animate__fadeInLeft">
+              Welcome to Paradise! 🌈
+            </h1>
+            <p class="animate__animated animate__fadeInLeft animate__delay-1s">
+              Sip into sweetness with our magical milkshakes made with love &
+              sparkles! ✨
+            </p>
+            <button
+              class="btn-cute animate__animated animate__fadeInUp animate__delay-2s"
+              onclick="scrollToSection('order')"
+            >
+              🛍️ Order Your Dream Shake
+            </button>
+          </div>
+          <div class="col-lg-6 text-center">
+            <div
+              class="animate__animated animate__bounceInRight animate__delay-1s"
+            >
+              <i
+                class="fas fa-ice-cream"
+                style="font-size: 15rem; color: rgba(255, 255, 255, 0.8)"
+              ></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="cute-section" id="about">
+      <div class="container">
+        <h2 class="section-title animate__animated animate__fadeInUp">
+          💖 About Our Sweet Dreams
+        </h2>
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <div class="milkshake-card animate__animated animate__fadeInUp">
+              <p
+                class="lead text-center"
+                style="font-size: 1.3rem; line-height: 1.8"
+              >
+                At Sweet Dreams Milkshake Boutique, we believe every sip should
+                feel like a warm hug! 🤗 Our adorable milkshakes are crafted
+                with the finest ingredients, topped with whipped cream clouds,
+                and sprinkled with magic dust to make your taste buds dance with
+                joy! 💃✨
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section
+      class="cute-section"
+      id="menu"
+      style="background: rgba(255, 255, 255, 0.1)"
+    >
+      <div class="container">
+        <h2 class="section-title animate__animated animate__fadeInUp">
+          🥤 Our Magical Menu
+        </h2>
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="milkshake-card animate__animated animate__fadeInUp">
+              <i class="fas fa-heart milkshake-icon"></i>
+              <h4 class="milkshake-title">Strawberry Dreams 🍓</h4>
+              <p class="milkshake-description">
+                Fresh strawberries blended with vanilla ice cream and topped
+                with pink whipped cream and heart-shaped sprinkles!
+              </p>
+              <div class="text-center">
+                <span class="price-tag">₱199.00</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div
+              class="milkshake-card animate__animated animate__fadeInUp animate__delay-1s"
+            >
+              <i class="fas fa-cookie-bite milkshake-icon"></i>
+              <h4 class="milkshake-title">Unicorn Cookies 🦄</h4>
+              <p class="milkshake-description">
+                Magical cookies & cream shake with rainbow sprinkles, whipped
+                cream, and a touch of edible glitter!
+              </p>
+              <div class="text-center">
+                <span class="price-tag">₱229.00</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div
+              class="milkshake-card animate__animated animate__fadeInUp animate__delay-2s"
+            >
+              <i class="fas fa-candy-cane milkshake-icon"></i>
+              <h4 class="milkshake-title">Chocolate Princess 👑</h4>
+              <p class="milkshake-description">
+                Rich chocolate shake topped with chocolate chips, caramel
+                drizzle, and a cherry crown on top!
+              </p>
+              <div class="text-center">
+                <span class="price-tag">₱219.00</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="milkshake-card animate__animated animate__fadeInUp">
+              <i class="fas fa-star milkshake-icon"></i>
+              <h4 class="milkshake-title">Cotton Candy Cloud ☁️</h4>
+              <p class="milkshake-description">
+                Fluffy cotton candy flavor with blue and pink swirls, topped
+                with actual cotton candy!
+              </p>
+              <div class="text-center">
+                <span class="price-tag">₱249.00</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div
+              class="milkshake-card animate__animated animate__fadeInUp animate__delay-1s"
+            >
+              <i class="fas fa-gem milkshake-icon"></i>
+              <h4 class="milkshake-title">Mermaid Mint 🧜‍♀️</h4>
+              <p class="milkshake-description">
+                Cool mint shake with sea-blue color, pearl decorations, and
+                mermaid tail cookie!
+              </p>
+              <div class="text-center">
+                <span class="price-tag">₱239.00</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div
+              class="milkshake-card animate__animated animate__fadeInUp animate__delay-2s"
+            >
+              <i class="fas fa-birthday-cake milkshake-icon"></i>
+              <h4 class="milkshake-title">Birthday Cake Bliss 🎂</h4>
+              <p class="milkshake-description">
+                Vanilla cake batter shake with colorful sprinkles, frosting, and
+                a mini birthday candle!
+              </p>
+              <div class="text-center">
+                <span class="price-tag">₱229.00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Order Section -->
+    <section class="cute-section" id="order">
+      <div class="container">
+        <h2 class="section-title animate__animated animate__fadeInUp">
+          🛍️ Order Your Dream Shake
+        </h2>
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <div class="order-form animate__animated animate__fadeInUp">
+              <form id="orderForm">
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="customerName" class="form-label"
+                      >👑 Your Sweet Name</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="customerName"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="customerPhone" class="form-label"
+                      >📱 Phone Number</label
+                    >
+                    <input
+                      type="tel"
+                      class="form-control"
+                      id="customerPhone"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="milkshakeSelect" class="form-label"
+                    >🥤 Choose Your Magical Shake</label
+                  >
+                  <select class="form-select" id="milkshakeSelect" required>
+                    <option value="">Select your dream shake...</option>
+                    <option value="strawberry">
+                      Strawberry Dreams 🍓 - ₱199.00
+                    </option>
+                    <option value="unicorn">
+                      Unicorn Cookies 🦄 - ₱229.00
+                    </option>
+                    <option value="chocolate">
+                      Chocolate Princess 👑 - ₱219.00
+                    </option>
+                    <option value="cotton">
+                      Cotton Candy Cloud ☁️ - ₱249.00
+                    </option>
+                    <option value="mermaid">Mermaid Mint 🧜‍♀️ - ₱239.00</option>
+                    <option value="birthday">
+                      Birthday Cake Bliss 🎂 - ₱229.00
+                    </option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">✨ Extra Toppings</label>
+                  <div class="custom-checkbox">
+                    <input type="checkbox" id="extraWhip" value="15.00" />
+                    <label for="extraWhip">Extra Whipped Cream (+₱15.00)</label>
+                  </div>
+                  <div class="custom-checkbox">
+                    <input type="checkbox" id="sprinkles" value="10.00" />
+                    <label for="sprinkles">Rainbow Sprinkles (+₱10.00)</label>
+                  </div>
+                  <div class="custom-checkbox">
+                    <input type="checkbox" id="cherry" value="10.00" />
+                    <label for="cherry">Cherry on Top 🍒 (+₱10.00)</label>
+                  </div>
+                  <div class="custom-checkbox">
+                    <input type="checkbox" id="glitter" value="20.00" />
+                    <label for="glitter">Edible Glitter ✨ (+₱20.00)</label>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">🔢 Quantity</label>
+                  <div class="quantity-selector">
+                    <button
+                      type="button"
+                      class="quantity-btn"
+                      onclick="changeQuantity(-1)"
+                    >
+                      -
+                    </button>
+                    <span class="quantity-display" id="quantity">1</span>
+                    <button
+                      type="button"
+                      class="quantity-btn"
+                      onclick="changeQuantity(1)"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="specialRequests" class="form-label"
+                    >💌 Special Requests</label
+                  >
+                  <textarea
+                    class="form-control"
+                    id="specialRequests"
+                    rows="3"
+                    placeholder="Any special wishes for your magical shake?"
+                  ></textarea>
+                </div>
+                <div class="text-center">
+                  <h4 class="mb-3" style="color: var(--primary-pink)">
+                    Total: ₱<span id="totalPrice">0.00</span>
+                  </h4>
+                  <button type="submit" class="btn-cute">
+                    🎉 Place My Sweet Order
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section
+      class="cute-section"
+      id="contact"
+      style="background: rgba(255, 255, 255, 0.1)"
+    >
+      <div class="container">
+        <h2 class="section-title animate__animated animate__fadeInUp">
+          📞 Get in Touch, Sweetie!
+        </h2>
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="contact-info animate__animated animate__fadeInUp">
+              <i class="fas fa-map-marker-alt contact-icon"></i>
+              <h4
+                style="
+                  color: var(--primary-pink);
+                  font-family: 'Fredoka One', cursive;
+                "
+              >
+                Our Sweet Location
+              </h4>
+              <p>
+                Boarding House Street, Debesmscat<br />Cabitan, Mnadaon, Masbate
+                12345
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div
+              class="contact-info animate__animated animate__fadeInUp animate__delay-1s"
+            >
+              <i class="fas fa-phone contact-icon"></i>
+              <h4
+                style="
+                  color: var(--primary-pink);
+                  font-family: 'Fredoka One', cursive;
+                "
+              >
+                Call Us! 💕
+              </h4>
+              <p>+63 9702392591<br />Open 9AM - 9PM Daily</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div
+              class="contact-info animate__animated animate__fadeInUp animate__delay-2s"
+            >
+              <i class="fas fa-envelope contact-icon"></i>
+              <h4
+                style="
+                  color: var(--primary-pink);
+                  font-family: 'Fredoka One', cursive;
+                "
+              >
+                Email Us! 💌
+              </h4>
+              <p>info@milkshake-shop.com<br />We'd love to hear from you!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center">
+            <h3
+              style="font-family: 'Fredoka One', cursive; margin-bottom: 20px"
+            >
+              ✨ Sweet Dreams Milkshake Boutique ✨
+            </h3>
+            <div class="social-links mb-3">
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <p>&copy; 2025 Sweet Dreams Milkshake Boutique.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // Floating hearts and sparkles
+      function createFloatingElement() {
+        const element = document.createElement("div");
+        const isHeart = Math.random() > 0.5;
+
+        element.innerHTML = isHeart ? "💖" : "✨";
+        element.className = isHeart ? "heart" : "sparkle";
+        element.style.left = Math.random() * 100 + "%";
+        element.style.top = Math.random() * 100 + "%";
+        element.style.animationDelay = Math.random() * 6 + "s";
+        element.style.animationDuration = Math.random() * 3 + 3 + "s";
+
+        document.getElementById("floatingElements").appendChild(element);
+
+        // Remove element after animation
+        setTimeout(() => {
+          if (element.parentNode) {
+            element.parentNode.removeChild(element);
+          }
+        }, 8000);
+      }
+
+      // Create floating elements periodically
+      setInterval(createFloatingElement, 2000);
+
+      // Initial floating elements
+      for (let i = 0; i < 10; i++) {
+        setTimeout(createFloatingElement, i * 500);
+      }
+
+      // Smooth scrolling
+      function scrollToSection(sectionId) {
+        document.getElementById(sectionId).scrollIntoView({
+          behavior: "smooth",
+        });
+      }
+
+      // Quantity management
+      let quantity = 1;
+
+      function changeQuantity(change) {
+        quantity = Math.max(1, quantity + change);
+        document.getElementById("quantity").textContent = quantity;
+        updateTotal();
+      }
+
+      // Price calculation
+      const prices = {
+        strawberry: 199.0,
+        unicorn: 229.0,
+        chocolate: 219.0,
+        cotton: 249.0,
+        mermaid: 239.0,
+        birthday: 229.0,
+      };
+
+      function updateTotal() {
+        const milkshakeSelect = document.getElementById("milkshakeSelect");
+        const selectedShake = milkshakeSelect.value;
+
+        let total = 0;
+
+        if (selectedShake && prices[selectedShake]) {
+          total = prices[selectedShake];
+        }
+
+        // Add toppings
+        const toppings = document.querySelectorAll(
+          'input[type="checkbox"]:checked'
+        );
+        toppings.forEach((topping) => {
+          total += parseFloat(topping.value);
+        });
+
+        // Multiply by quantity
+        total *= quantity;
+
+        document.getElementById("totalPrice").textContent = total.toFixed(2);
+      }
+
+      // Event listeners for price updates
+      document
+        .getElementById("milkshakeSelect")
+        .addEventListener("change", updateTotal);
+      document
+        .querySelectorAll('input[type="checkbox"]')
+        .forEach((checkbox) => {
+          checkbox.addEventListener("change", updateTotal);
+        });
+
+      // Form submission
+      document
+        .getElementById("orderForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const customerName = document.getElementById("customerName").value;
+          const phone = document.getElementById("customerPhone").value;
+          const milkshake = document.getElementById("milkshakeSelect").value;
+          const specialRequests =
+            document.getElementById("specialRequests").value;
+          const total = document.getElementById("totalPrice").textContent;
+
+          // Create order summary
+          let toppings = [];
+          document
+            .querySelectorAll('input[type="checkbox"]:checked')
+            .forEach((topping) => {
+              toppings.push(topping.nextElementSibling.textContent);
+            });
+
+          let orderSummary = `🎉 YAY! Order placed successfully! 🎉\n\n`;
+          orderSummary += `💖 Customer: ${customerName}\n`;
+          orderSummary += `📱 Phone: ${phone}\n`;
+          orderSummary += `🥤 Milkshake: ${
+            document.querySelector("#milkshakeSelect option:checked")
+              .textContent
+          }\n`;
+          orderSummary += `🔢 Quantity: ₱${quantity}\n`;
+
+          if (toppings.length > 0) {
+            orderSummary += `✨ Toppings: ${toppings.join(", ")}\n`;
+          }
+
+          if (specialRequests) {
+            orderSummary += `💌 Special Requests: ${specialRequests}\n`;
+          }
+
+          orderSummary += `💰 Total: ₱${total}\n\n`;
+          orderSummary += `Your magical milkshake will be ready in 10-15 minutes! ✨`;
+
+          alert(orderSummary);
+
+          // Reset form
+          this.reset();
+          quantity = 1;
+          document.getElementById("quantity").textContent = "1";
+          updateTotal();
+        });
+
+      // Animate elements on scroll
+      function animateOnScroll() {
+        const elements = document.querySelectorAll(".animate__animated");
+        const windowHeight = window.innerHeight;
+
+        elements.forEach((element) => {
+          const elementTop = element.getBoundingClientRect().top;
+
+          if (elementTop < windowHeight - 100) {
+            if (
+              !element.classList.contains("animate__fadeInUp") &&
+              !element.classList.contains("animate__fadeInLeft") &&
+              !element.classList.contains("animate__bounceIn") &&
+              !element.classList.contains("animate__bounceInRight")
+            ) {
+              element.classList.add("animate__fadeInUp");
+            }
+          }
+        });
+      }
+
+      // Scroll event listener
+      window.addEventListener("scroll", animateOnScroll);
+
+      // Navigation smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href").substring(1);
+          const targetElement = document.getElementById(targetId);
+
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+
+      // Add sparkle effect on button hover
+      document.querySelectorAll(".btn-cute").forEach((button) => {
+        button.addEventListener("mouseenter", function () {
+          this.style.transform = "translateY(-3px) scale(1.05)";
+          this.style.boxShadow = "0 12px 35px rgba(255, 107, 157, 0.6)";
+        });
+
+        button.addEventListener("mouseleave", function () {
+          this.style.transform = "translateY(0) scale(1)";
+          this.style.boxShadow = "0 8px 25px rgba(255, 107, 157, 0.4)";
+        });
+      });
+
+      // Add bounce effect to cards on hover
+      document.querySelectorAll(".milkshake-card").forEach((card) => {
+        card.addEventListener("mouseenter", function () {
+          this.style.transform = "translateY(-10px) rotateY(5deg)";
+        });
+
+        card.addEventListener("mouseleave", function () {
+          this.style.transform = "translateY(0) rotateY(0deg)";
+        });
+      });
+
+      // Random encouraging messages
+      const encouragingMessages = [
+        "You're about to taste heaven! 😍",
+        "This shake will make your day magical! ✨",
+        "You have excellent taste, sweetie! 💖",
+        "Get ready for the most adorable shake ever! 🥰",
+        "This will be absolutely divine! 👑",
+        "Your taste buds are in for a treat! 🎉",
+      ];
+
+      // Show encouraging message when milkshake is selected
+      document
+        .getElementById("milkshakeSelect")
+        .addEventListener("change", function () {
+          if (this.value) {
+            const randomMessage =
+              encouragingMessages[
+                Math.floor(Math.random() * encouragingMessages.length)
+              ];
+
+            // Create a temporary message element
+            const messageDiv = document.createElement("div");
+            messageDiv.innerHTML = randomMessage;
+            messageDiv.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: linear-gradient(45deg, var(--primary-pink), var(--gold));
+                    color: white;
+                    padding: 15px 25px;
+                    border-radius: 25px;
+                    font-weight: bold;
+                    font-size: 1.1rem;
+                    box-shadow: 0 10px 30px rgba(255, 107, 157, 0.5);
+                    z-index: 9999;
+                    animation: bounceIn 0.5s ease-out;
+                `;
+
+            document.body.appendChild(messageDiv);
+
+            // Remove message after 2 seconds
+            setTimeout(() => {
+              messageDiv.style.animation = "fadeOut 0.5s ease-out";
+              setTimeout(() => {
+                if (messageDiv.parentNode) {
+                  messageDiv.parentNode.removeChild(messageDiv);
+                }
+              }, 500);
+            }, 2000);
+          }
+        });
+
+      // Initialize total price on page load
+      updateTotal();
+    </script>
+  </body>
+</html>
