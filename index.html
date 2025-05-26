@@ -104,8 +104,7 @@
         animation: sparkle 3s ease-in-out infinite;
       }
 
-      /* Header Styles */
-      .navbar {
+      .custom-navbar {
         background: linear-gradient(
           45deg,
           var(--primary-pink),
@@ -114,6 +113,7 @@
         backdrop-filter: blur(10px);
         box-shadow: 0 8px 32px rgba(255, 107, 157, 0.3);
         border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+        z-index: 1050;
       }
 
       .navbar-brand {
@@ -121,21 +121,46 @@
         font-size: 2rem;
         color: white !important;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        white-space: nowrap;
       }
 
       .navbar-nav .nav-link {
         color: white !important;
         font-weight: 600;
-        margin: 0 10px;
+        margin: 0 6px;
         padding: 8px 16px !important;
         border-radius: 20px;
         transition: all 0.3s ease;
+        text-align: center;
       }
 
-      .navbar-nav .nav-link:hover {
+      .navbar-nav .nav-link:hover,
+      .navbar-nav .nav-link:focus {
         background: rgba(255, 255, 255, 0.2);
         transform: translateY(-2px);
         box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+      }
+
+      @media (max-width: 991.98px) {
+        .navbar-nav {
+          background: rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(5px);
+          border-radius: 10px;
+          padding: 10px;
+          margin-top: 10px;
+        }
+
+        .navbar-nav .nav-link {
+          display: block;
+          margin: 5px 0;
+        }
+      }
+
+      /* On screens smaller than 576px (xs) */
+      @media (max-width: 575.98px) {
+        .navbar-brand {
+          font-size: 1.3rem; /* Scales down text */
+        }
       }
 
       /* Hero Section */
@@ -458,10 +483,10 @@
     <div class="floating-hearts" id="floatingElements"></div>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-      <div class="container">
+    <nav class="navbar navbar-expand-lg fixed-top custom-navbar">
+      <div class="container d-flex justify-content-between align-items-center">
         <a
-          class="navbar-brand animate__animated animate__bounceIn"
+          class="navbar-brand animate__animated animate__bounceIn text-nowrap"
           href="#home"
         >
           ✨ Sweet Boutique ✨
@@ -471,11 +496,17 @@
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav text-center">
             <li class="nav-item">
               <a class="nav-link" href="#home">🏠 Home</a>
             </li>
